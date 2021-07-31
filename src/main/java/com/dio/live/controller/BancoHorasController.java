@@ -1,5 +1,6 @@
 package com.dio.live.controller;
 
+import com.dio.live.dto.BancoHorasDTO;
 import com.dio.live.model.BancoHoras;
 import com.dio.live.service.BancoHorasService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,10 @@ public class BancoHorasController {
     }
 
     @PostMapping
-    public ResponseEntity<BancoHoras> createBanco(@RequestBody BancoHoras BancoHoras) {
+    public ResponseEntity<BancoHoras> createBanco(@RequestBody BancoHorasDTO bancoHorasDTO) {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                service.save(BancoHoras)
+                service.save(bancoHorasDTO.toModel())
         );
     }
 
@@ -45,15 +46,16 @@ public class BancoHorasController {
         );
     }
 
-    @PutMapping("/{idBanco}/{idMovimentacao}/{idUsuario}")
-    public ResponseEntity<BancoHoras> updateBanco(
-            @PathVariable("idBanco") Long idBanco,
-            @PathVariable("idMovimentacao") Long idMovimentacao,
-            @PathVariable("idUsuario") Long idUsuario,
-            @RequestBody BancoHoras obj) {
+    @PutMapping("/")
+    public ResponseEntity<BancoHoras> updateBanco(@RequestBody BancoHorasDTO bancoHorasDTO) {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(
-                service.update(idBanco, idMovimentacao, idUsuario, obj)
+                service.update(
+                        bancoHorasDTO.getIdBancoHoras(),
+                        bancoHorasDTO.getIdMovimentacao(),
+                        bancoHorasDTO.getIdUsuario(),
+                        bancoHorasDTO.toModel()
+                )
         );
     }
 
