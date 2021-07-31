@@ -12,32 +12,32 @@ import java.util.List;
 @RestController
 @RequestMapping("/jornadas")
 public class JornadaTrabalhoController {
-    private JornadaService jornadaService;
+    private JornadaService service;
 
     @Autowired
-    public JornadaTrabalhoController(JornadaService jornadaService) {
-        this.jornadaService = jornadaService;
+    public JornadaTrabalhoController(JornadaService service) {
+        this.service = service;
     }
 
     @PostMapping
     public ResponseEntity<JornadaTrabalho> createJornada(@RequestBody JornadaTrabalho jornadaTrabalho) {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                jornadaService.save(jornadaTrabalho)
+                service.save(jornadaTrabalho)
         );
     }
 
     @GetMapping
     public ResponseEntity<List<JornadaTrabalho>> getJornadaList() {
         return ResponseEntity.ok(
-                jornadaService.findAll()
+                service.findAll()
         );
     }
 
     @GetMapping("/{idJornada}")
     public ResponseEntity<JornadaTrabalho> getJornadaByID(@PathVariable("idJornada") Long idJornada) {
         return ResponseEntity.ok(
-                jornadaService.findById(idJornada)
+                service.findById(idJornada)
         );
     }
 
@@ -46,14 +46,14 @@ public class JornadaTrabalhoController {
                                          @RequestBody JornadaTrabalho obj) {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(
-                jornadaService.update(idJornada, obj)
+                service.update(idJornada, obj)
         );
     }
 
     @DeleteMapping("/{idJornada}")
     public ResponseEntity deleteByID(@PathVariable("idJornada") Long idJornada) {
 
-       jornadaService.delete(idJornada);
+       service.delete(idJornada);
 
        return ResponseEntity.noContent().build();
     }
