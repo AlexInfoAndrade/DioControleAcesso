@@ -20,10 +20,10 @@ public class NivelAcessoController {
     }
 
     @PostMapping
-    public ResponseEntity<NivelAcesso> createNivel(@RequestBody NivelAcesso NivelAcesso) {
+    public ResponseEntity<NivelAcesso> createNivel(@RequestBody NivelAcesso nivelAcesso) {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                service.save(NivelAcesso)
+                service.save(nivelAcesso)
         );
     }
 
@@ -43,10 +43,10 @@ public class NivelAcessoController {
 
     @PutMapping("/{idNivel}")
     public ResponseEntity<NivelAcesso> updateNivel(@PathVariable("idNivel") Long idNivel,
-                                         @RequestBody NivelAcesso obj) {
+                                         @RequestBody NivelAcesso nivelAcesso) {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(
-                service.update(idNivel, obj)
+                service.update(idNivel, nivelAcesso)
         );
     }
 

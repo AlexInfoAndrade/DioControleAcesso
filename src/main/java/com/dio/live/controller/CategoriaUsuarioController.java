@@ -20,10 +20,10 @@ public class CategoriaUsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoriaUsuario> createCategoria(@RequestBody CategoriaUsuario CategoriaUsuario) {
+    public ResponseEntity<CategoriaUsuario> createCategoria(@RequestBody CategoriaUsuario categoriaUsuario) {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                service.save(CategoriaUsuario)
+                service.save(categoriaUsuario)
         );
     }
 
@@ -43,10 +43,10 @@ public class CategoriaUsuarioController {
 
     @PutMapping("/{idCategoria}")
     public ResponseEntity<CategoriaUsuario> updateCategoria(@PathVariable("idCategoria") Long idCategoria,
-                                         @RequestBody CategoriaUsuario obj) {
+                                         @RequestBody CategoriaUsuario categoriaUsuario) {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(
-                service.update(idCategoria, obj)
+                service.update(idCategoria, categoriaUsuario)
         );
     }
 

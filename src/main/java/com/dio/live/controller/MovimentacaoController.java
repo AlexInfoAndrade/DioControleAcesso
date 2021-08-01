@@ -1,7 +1,7 @@
 package com.dio.live.controller;
 
+import com.dio.live.dto.MovimentacaoDTO;
 import com.dio.live.model.Movimentacao;
-import com.dio.live.service.MovimentacaoService;
 import com.dio.live.service.MovimentacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +21,10 @@ public class MovimentacaoController {
     }
 
     @PostMapping
-    public ResponseEntity<Movimentacao> createMovimento(@RequestBody Movimentacao Movimentacao) {
+    public ResponseEntity<Movimentacao> createMovimento(@RequestBody MovimentacaoDTO movimentacaoDTO) {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                service.save(Movimentacao)
+                service.save(movimentacaoDTO.toModel())
         );
     }
 
@@ -45,14 +45,15 @@ public class MovimentacaoController {
         );
     }
 
-    @PutMapping("/{idMovimento}/{idUsuario}")
-    public ResponseEntity<Movimentacao> updateMovimento(
-            @PathVariable("idMovimento") Long idMovimento,
-            @PathVariable("idUsuario") Long idUsuario,
-            @RequestBody Movimentacao obj) {
+    @PutMapping("/")
+    public ResponseEntity<Movimentacao> updateMovimento(@RequestBody MovimentacaoDTO movimentacaoDTO) {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(
-                service.update(idMovimento, idUsuario, obj)
+                service.update(
+                        movimentacaoDTO.getIdMovimento(),
+                        movimentacaoDTO.getIdUsuario(),
+                        movimentacaoDTO.toModel()
+                )
         );
     }
 

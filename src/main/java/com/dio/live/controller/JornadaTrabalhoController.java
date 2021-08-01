@@ -43,10 +43,10 @@ public class JornadaTrabalhoController {
 
     @PutMapping("/{idJornada}")
     public ResponseEntity<JornadaTrabalho> updateJornada(@PathVariable("idJornada") Long idJornada,
-                                         @RequestBody JornadaTrabalho obj) {
+                                         @RequestBody JornadaTrabalho jornadaTrabalho) {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(
-                service.update(idJornada, obj)
+                service.update(idJornada, jornadaTrabalho)
         );
     }
 

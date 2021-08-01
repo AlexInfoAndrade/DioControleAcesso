@@ -1,7 +1,7 @@
 package com.dio.live.controller;
 
+import com.dio.live.dto.LocalidadeDTO;
 import com.dio.live.model.Localidade;
-import com.dio.live.service.LocalidadeService;
 import com.dio.live.service.LocalidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +21,10 @@ public class LocalidadeController {
     }
 
     @PostMapping
-    public ResponseEntity<Localidade> createLocalidade(@RequestBody Localidade Localidade) {
+    public ResponseEntity<Localidade> createLocalidade(@RequestBody LocalidadeDTO localidadeDTO) {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                service.save(Localidade)
+                service.save(localidadeDTO.toModel())
         );
     }
 
@@ -42,12 +42,11 @@ public class LocalidadeController {
         );
     }
 
-    @PutMapping("/{idLocalidade}")
-    public ResponseEntity<Localidade> updateLocalidade(@PathVariable("idLocalidade") Long idLocalidade,
-                                         @RequestBody Localidade obj) {
+    @PutMapping("/")
+    public ResponseEntity<Localidade> updateLocalidade(@RequestBody LocalidadeDTO localidadeDTO) {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(
-                service.update(idLocalidade, obj)
+                service.update(localidadeDTO.getId(), localidadeDTO.toModel())
         );
     }
 

@@ -1,7 +1,7 @@
 package com.dio.live.controller;
 
+import com.dio.live.dto.CalendarioDTO;
 import com.dio.live.model.Calendario;
-import com.dio.live.service.CalendarioService;
 import com.dio.live.service.CalendarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +21,10 @@ public class CalendarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Calendario> createCalendario(@RequestBody Calendario Calendario) {
+    public ResponseEntity<Calendario> createCalendario(@RequestBody CalendarioDTO calendarioDTO) {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                service.save(Calendario)
+                service.save(calendarioDTO.toModel())
         );
     }
 
@@ -42,12 +42,11 @@ public class CalendarioController {
         );
     }
 
-    @PutMapping("/{idCalendario}")
-    public ResponseEntity<Calendario> updateCalendario(@PathVariable("idCalendario") Long idCalendario,
-                                         @RequestBody Calendario obj) {
+    @PutMapping("/")
+    public ResponseEntity<Calendario> updateCalendario(@RequestBody CalendarioDTO calendarioDTO) {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(
-                service.update(idCalendario, obj)
+                service.update(calendarioDTO.getId(), calendarioDTO.toModel())
         );
     }
 
