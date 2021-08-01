@@ -23,5 +23,4 @@ public class Calendario {
 
     private String descricao;
     private LocalDateTime dataEspecial;
-    //Procurar API que preenche as datas comemorativas no banco
 }

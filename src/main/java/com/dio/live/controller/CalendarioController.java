@@ -28,6 +28,20 @@ public class CalendarioController {
         );
     }
 
+    @PostMapping("/feriados/{ano}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createHoliday(@PathVariable("ano") int ano) {
+        service.carregarFeriados(ano);
+    }
+
+    @PostMapping("/feriados/{ano}/{uf}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createHoliday(@PathVariable("ano") int ano,
+                                                          @PathVariable("uf") String uf) {
+
+        service.carregarFeriados(ano, uf);
+    }
+
     @GetMapping
     public ResponseEntity<List<Calendario>> getCalendarioList() {
         return ResponseEntity.ok(

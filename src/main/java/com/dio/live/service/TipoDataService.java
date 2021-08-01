@@ -21,8 +21,7 @@ public class TipoDataService {
     }
 
     public TipoData save(TipoData obj) throws DuplicateRegisterException {
-        Optional<TipoData> tipoExistente = repository
-                .findByDescricaoContainingIgnoreCase(obj.getDescricao());
+        Optional<TipoData> tipoExistente = findByDescricao(obj.getDescricao());
 
         if(tipoExistente.isPresent()) {
             throw new DuplicateRegisterException("Duplicate registration");
@@ -38,6 +37,11 @@ public class TipoDataService {
     public TipoData findById(Long id) throws NotFoundRegisterException {
         return repository.findById(id)
                 .orElseThrow(() -> new NotFoundRegisterException("Not found!"));
+    }
+
+    public Optional<TipoData> findByDescricao(String descricao) {
+         return repository
+                .findByDescricaoContainingIgnoreCase(descricao);
     }
 
     public TipoData update(Long id, TipoData obj) throws NotFoundRegisterException {
