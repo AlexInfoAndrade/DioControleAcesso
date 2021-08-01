@@ -20,10 +20,10 @@ public class TipoDataController {
     }
 
     @PostMapping
-    public ResponseEntity<TipoData> createTipo(@RequestBody TipoData TipoData) {
+    public ResponseEntity<TipoData> createTipo(@RequestBody TipoData tipoData) {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                service.save(TipoData)
+                service.save(tipoData)
         );
     }
 
@@ -43,10 +43,10 @@ public class TipoDataController {
 
     @PutMapping("/{idTipo}")
     public ResponseEntity<TipoData> updateTipo(@PathVariable("idTipo") Long idTipo,
-                                         @RequestBody TipoData obj) {
+                                         @RequestBody TipoData tipoData) {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(
-                service.update(idTipo, obj)
+                service.update(idTipo, tipoData)
         );
     }
 

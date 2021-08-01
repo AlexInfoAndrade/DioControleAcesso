@@ -2,7 +2,6 @@ package com.dio.live.controller;
 
 import com.dio.live.model.Empresa;
 import com.dio.live.service.EmpresaService;
-import com.dio.live.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +20,10 @@ public class EmpresaController {
     }
 
     @PostMapping
-    public ResponseEntity<Empresa> createEmpresa(@RequestBody Empresa Empresa) {
+    public ResponseEntity<Empresa> createEmpresa(@RequestBody Empresa empresa) {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                service.save(Empresa)
+                service.save(empresa)
         );
     }
 
@@ -44,10 +43,10 @@ public class EmpresaController {
 
     @PutMapping("/{idEmpresa}")
     public ResponseEntity<Empresa> updateEmpresa(@PathVariable("idEmpresa") Long idEmpresa,
-                                         @RequestBody Empresa obj) {
+                                         @RequestBody Empresa empresa) {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(
-                service.update(idEmpresa, obj)
+                service.update(idEmpresa, empresa)
         );
     }
 

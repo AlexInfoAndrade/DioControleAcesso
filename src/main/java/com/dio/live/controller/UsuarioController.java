@@ -1,7 +1,7 @@
 package com.dio.live.controller;
 
+import com.dio.live.dto.UsuarioDTO;
 import com.dio.live.model.Usuario;
-import com.dio.live.service.UsuarioService;
 import com.dio.live.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +21,10 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario Usuario) {
+    public ResponseEntity<Usuario> createUsuario(@RequestBody UsuarioDTO usuarioDTO) {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                service.save(Usuario)
+                service.save(usuarioDTO.toModel())
         );
     }
 
@@ -42,12 +42,11 @@ public class UsuarioController {
         );
     }
 
-    @PutMapping("/{idUsuario}")
-    public ResponseEntity<Usuario> updateUsuario(@PathVariable("idUsuario") Long idUsuario,
-                                         @RequestBody Usuario obj) {
+    @PutMapping("/")
+    public ResponseEntity<Usuario> updateUsuario(@RequestBody UsuarioDTO usuarioDTO) {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(
-                service.update(idUsuario, obj)
+                service.update(usuarioDTO.getId(), usuarioDTO.toModel())
         );
     }
 

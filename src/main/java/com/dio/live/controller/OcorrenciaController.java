@@ -2,7 +2,6 @@ package com.dio.live.controller;
 
 import com.dio.live.model.Ocorrencia;
 import com.dio.live.service.OcorrenciaService;
-import com.dio.live.service.OcorrenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +20,10 @@ public class OcorrenciaController {
     }
 
     @PostMapping
-    public ResponseEntity<Ocorrencia> createOcorrencia(@RequestBody Ocorrencia Ocorrencia) {
+    public ResponseEntity<Ocorrencia> createOcorrencia(@RequestBody Ocorrencia ocorrencia) {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                service.save(Ocorrencia)
+                service.save(ocorrencia)
         );
     }
 
@@ -44,10 +43,10 @@ public class OcorrenciaController {
 
     @PutMapping("/{idOcorrencia}")
     public ResponseEntity<Ocorrencia> updateOcorrencia(@PathVariable("idOcorrencia") Long idOcorrencia,
-                                         @RequestBody Ocorrencia obj) {
+                                         @RequestBody Ocorrencia ocorrencia) {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(
-                service.update(idOcorrencia, obj)
+                service.update(idOcorrencia, ocorrencia)
         );
     }
 
